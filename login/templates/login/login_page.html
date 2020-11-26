@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    {% block login_cred %}
+  	<h3>Enter your login credentials:</h3>
+
+  	<form action="login/" method="post"> {% csrf_token %}
+  	<input type="text" name="username" value="ro">
+  	<input type="password" name="password" value="roroboat">
+  	<input type="submit", value="Login">
+  	</form>
+  	{% endblock %}
+  </body>
+</html>

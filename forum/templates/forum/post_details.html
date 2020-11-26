@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Forum</title>
+    <style media="screen">
+      table{
+        width:90%;
+        border:1px solid black;
+      }
+      td{
+        border:1px solid black;
+      }
+      .user_det{
+        width:20%;
+      }
+    </style>
+  </head>
+  <body>
+  <center>
+  <hr>
+  <h1>Django Forum Example</h1>
+  <hr>
+
+  <div class="user-stuff">
+
+    {% if user.is_authenticated %}
+
+    <p>You are logged in as {{user.username}}, you can post and comment.</p>
+
+    <div class="post_field">
+      <h2>Comment on thread:</h2>
+      <form action="make_comment/" method="post"> {% csrf_token %}
+        <input type="text" name="content" value="Enter text here">
+        <input type="submit" name="submit" value="Post">
+      </form>
+    </div>
+
+    {% else %}
+    <p>You are not logged in. You cannot comment.</p>
+    {% endif %}
+
+    <!-- Feed with all the posts, as a table-->
+    <div class="post_details">
+
+      <table>
+
+      <tr>
+        <td class='user_det'><strong>{{post.author}} </strong> <br><i>{{post.created_date}}</i></td>
+        <td>{{post.text|linebreaks}}</td>
+      </tr>
+
+      </table>
+      <h2>Comments:</h2>
+      <table>
+
+      {% for comment in comments %}
+
+      <tr>
+        <td class='user_det'><strong>{{comment.author}} </strong> <br><i>{{comment.created_date}}</i></td>
+        <td>{{comment.text|linebreaks}}</td>
+      </tr>
+
+      {% empty %}
+      <tr>No comments on this thread</tr>
+
+      {% endfor %}
+
+      </table>
+    </div>
+
+
+  </div>
+
+
+
+
+</center>
+  </body>
+
+</html>
