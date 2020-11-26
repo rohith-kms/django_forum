@@ -20,3 +20,6 @@ Currently, 2 users exist in the database. You can use them to try out the differ
 * __username:__ ro; __password:__ roroboat
 * __username:__ potato; __password:__ momomomo
 
+## Changing password:
+
+You can change password using `python manage.py changepassword <username>`
